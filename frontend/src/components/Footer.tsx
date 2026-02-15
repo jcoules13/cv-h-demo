@@ -10,6 +10,9 @@ export default function Footer() {
           <p className="mt-2 text-xs text-gray-400">
             Conforme RGPD | Chiffrement AES-256 | Donnees hebergees en France
           </p>
+          <p className="mt-1 text-xs text-gray-400">
+            Conforme a l'obligation d'emploi des travailleurs handicapes (Art. L5212-1 du Code du travail)
+          </p>
         </div>
       </div>
     </footer>

@@ -10,7 +10,7 @@ export default function Header() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-gray-900">CV-H</h1>
-            <p className="text-xs text-gray-500">Recrutement inclusif par l'IA</p>
+            <p className="text-xs text-gray-500">OETH & Recrutement inclusif par l'IA</p>
           </div>
         </div>
       </div>

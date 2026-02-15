@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function ContactModal({ webhookUrl, onClose }: Props) {
-  const [form, setForm] = useState({ nom: '', email: '', telephone: '', entreprise: '', message: '' })
+  const [form, setForm] = useState({ nom: '', email: '', telephone: '', entreprise: '', effectif: '', message: '' })
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -46,7 +46,7 @@ export default function ContactModal({ webhookUrl, onClose }: Props) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onClick={onClose}>
       <div className="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900">Demander un acces recruteur</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Accedez aux profils complets</h3>
           <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded-lg">
             <X className="h-5 w-5 text-gray-500" />
           </button>
@@ -59,7 +59,7 @@ export default function ContactModal({ webhookUrl, onClose }: Props) {
             </div>
             <h4 className="text-lg font-semibold text-gray-900 mb-2">Demande envoyee !</h4>
             <p className="text-sm text-gray-600 mb-6">
-              Nous avons bien recu votre demande et vous recontacterons rapidement.
+              Votre demande a ete envoyee ! Notre equipe vous contactera sous 24h pour configurer votre acces.
             </p>
             <button onClick={onClose} className="btn-primary">Fermer</button>
           </div>
@@ -80,6 +80,10 @@ export default function ContactModal({ webhookUrl, onClose }: Props) {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Entreprise *</label>
               <input type="text" className="input" required value={form.entreprise} onChange={update('entreprise')} disabled={sending} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Effectif de l'entreprise</label>
+              <input type="number" className="input" min="1" placeholder="Ex: 100" value={form.effectif} onChange={update('effectif')} disabled={sending} />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>

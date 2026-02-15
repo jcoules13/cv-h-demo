@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
+import OethCalculator from './components/OethCalculator'
 import SearchForm from './components/SearchForm'
 import ResultsList from './components/ResultsList'
 import CandidatDetail from './components/CandidatDetail'
@@ -17,6 +18,13 @@ export default function App() {
   const [hasSearched, setHasSearched] = useState(false)
   const [showContact, setShowContact] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const calculatorRef = useRef<HTMLDivElement>(null)
+  const searchRef = useRef<HTMLDivElement>(null)
+
+  const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   const handleSearch = async (query: string, city: string, threshold: number) => {
     setSearching(true)
@@ -50,24 +58,34 @@ export default function App() {
       <Header />
 
       <main className="flex-1">
-        <HeroSection />
+        <HeroSection
+          onScrollToCalculator={() => scrollTo(calculatorRef)}
+          onScrollToSearch={() => scrollTo(searchRef)}
+        />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <SearchForm onSearch={handleSearch} searching={searching} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+          <div ref={calculatorRef}>
+            <OethCalculator onScrollToSearch={() => scrollTo(searchRef)} />
+          </div>
+
+          <div ref={searchRef}>
+            <SearchForm onSearch={handleSearch} searching={searching} />
+          </div>
 
           {error && (
-            <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-lg text-sm">
+            <div className="p-3 bg-red-50 text-red-700 rounded-lg text-sm">
               {error}
             </div>
           )}
 
           {hasSearched && (
-            <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-1">
                 <ResultsList
                   results={results}
                   selectedId={selectedCandidat?.id || null}
                   onSelect={setSelectedCandidat}
+                  onRequestAccess={() => setShowContact(true)}
                 />
               </div>
               <div className="lg:col-span-2">

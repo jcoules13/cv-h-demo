@@ -39,6 +39,9 @@
            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
            placeholder-gray-400 text-sm;
   }
+  .card-warning {
+    @apply border-amber-300 bg-amber-50;
+  }
 }
 
 body {

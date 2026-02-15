@@ -12,14 +12,14 @@ export default function BlurOverlay({ onRequestAccess }: Props) {
           <Lock className="h-7 w-7 text-blue-600" />
         </div>
         <h4 className="text-lg font-semibold text-gray-900 mb-2">
-          Profil complet reserve aux recruteurs
+          Ce profil pourrait reduire votre penalite OETH
         </h4>
         <p className="text-sm text-gray-600 mb-5">
-          Pour acceder aux experiences, formations et contacter les candidats,
-          demandez votre acces recruteur.
+          Accedez aux experiences, formations et coordonnees
+          de ce candidat RQTH qualifie.
         </p>
         <button onClick={onRequestAccess} className="btn-primary">
-          Demander un acces
+          Demander mon acces recruteur
         </button>
       </div>
     </div>

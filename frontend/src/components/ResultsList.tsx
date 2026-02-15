@@ -1,4 +1,4 @@
-import { Users } from 'lucide-react'
+import { Users, Bell } from 'lucide-react'
 import type { CandidatPublic } from '../types'
 import CandidatCard from './CandidatCard'
 
@@ -6,15 +6,23 @@ interface Props {
   results: CandidatPublic[]
   selectedId: string | null
   onSelect: (candidat: CandidatPublic) => void
+  onRequestAccess: () => void
 }
 
-export default function ResultsList({ results, selectedId, onSelect }: Props) {
+export default function ResultsList({ results, selectedId, onSelect, onRequestAccess }: Props) {
   if (results.length === 0) {
     return (
       <div className="card card-body text-center text-gray-500 py-12">
         <Users className="h-12 w-12 mx-auto mb-3 text-gray-300" />
-        <p className="font-medium">Aucun profil trouve</p>
-        <p className="text-sm mt-1">Essayez avec d'autres mots-cles ou reduisez la precision</p>
+        <p className="font-medium">Aucun profil correspondant pour le moment</p>
+        <p className="text-sm mt-1 mb-4">
+          Nos profils sont mis a jour quotidiennement.
+          Demandez un acces pour etre notifie des nouveaux candidats RQTH.
+        </p>
+        <button onClick={onRequestAccess} className="btn-outline inline-flex items-center mx-auto">
+          <Bell className="h-4 w-4 mr-2" />
+          M'alerter des nouveaux profils
+        </button>
       </div>
     )
   }
